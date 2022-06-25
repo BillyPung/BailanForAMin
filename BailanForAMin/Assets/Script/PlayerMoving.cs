@@ -10,7 +10,8 @@ public class PlayerMoving : MonoBehaviour
     private Rigidbody2D myRigidbody;
     private Animator myAnim;
     private BoxCollider2D myFeet;
-    private bool isGround;
+    public static bool isGround;
+    public static int facingLeft = 1; //1 is facing right, while -1 is facing left
 
     private void Start()
     {
