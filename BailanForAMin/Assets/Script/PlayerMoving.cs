@@ -10,6 +10,7 @@ public class PlayerMoving : MonoBehaviour
     private Rigidbody2D myRigidbody;
     private Animator myAnim;
     private BoxCollider2D myFeet;
+    public float gravityMultiplier = 9.8f;
     public static bool isGround;
     public static int facing = 1; //1 is facing right, while -1 is facing left
 
@@ -18,7 +19,7 @@ public class PlayerMoving : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         myFeet = GetComponent<BoxCollider2D>();
         myAnim = GetComponent<Animator>();
-        myRigidbody.centerOfMass = transform.Find("CenterOfMass").transform.position;
+        //myRigidbody.centerOfMass = transform.Find("CenterOfGravity").transform.position;
     }
 
     private void Update()
@@ -44,15 +45,31 @@ public class PlayerMoving : MonoBehaviour
             if (myRigidbody.velocity.x > 0.1f)
             {
                 facing = 1;
-                transform.localRotation = Quaternion.Euler(0, 0, 0);
+                if(Physics2D.gravity.y < 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 180, 180);
+                }
             }
 
             if (myRigidbody.velocity.x < -0.1f)
             {
                 facing = -1;
-                transform.localRotation = Quaternion.Euler(0, 180, 0);
+                
+                if(Physics2D.gravity.y < 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 180);
+                }
             }
         }
+        
     }
 
     void run()
@@ -74,7 +91,9 @@ public class PlayerMoving : MonoBehaviour
         {
             //print("im jumping");
             myAnim.SetBool("jumpUp", true);
-            Vector2 playerVel = new Vector2(0, jumpSpeed);
+            //Vector2 playerVel = new Vector2(0, jumpSpeed);
+            Vector2 playerVel = Physics2D.gravity / gravityMultiplier * -jumpSpeed;
+            print("playerVel" + playerVel);
             myRigidbody.velocity = playerVel;
            // myRigidbody.AddForce(playerVel, ForceMode2D.Force);
         }
