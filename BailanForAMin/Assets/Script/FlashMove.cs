@@ -33,7 +33,7 @@ public class FlashMove : MonoBehaviour
     }
     void moveSelf()
     {
-        if ((myRigidbody.velocity.y < 0.1f || myRigidbody.velocity.y >0.1f) && myRigidbody.velocity.x == 0)
+        if ((myRigidbody.velocity.y < -0.1f || myRigidbody.velocity.y >0.1f) && myRigidbody.velocity.x == 0)
         {
             if (Input.GetKeyDown(KeyCode.K))
             {
