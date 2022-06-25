@@ -52,10 +52,10 @@ public class FreezeAndChoose : MonoBehaviour
         freeze = true;
     }
 
-    void speedMoved()
+    /*void speedMoved()
     {
         
-    }
+    }*/
     public void OnMouseEnter()
     {
         //throw new NotImplementedException();
