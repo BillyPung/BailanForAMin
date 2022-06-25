@@ -6,6 +6,9 @@ public class CameraFollow : MonoBehaviour
 {
     public Transform target;
     public float smoothSpeed = 0.125f;
+
+    public Vector2 minPosition;
+    public Vector2 maxPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,15 +22,14 @@ public class CameraFollow : MonoBehaviour
             if (transform.position != target.position)
             {
                 Vector3 desiredPosition = target.position;
-                Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-                transform.position = smoothedPosition;
+                transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
             }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetCamPosLimit(Vector2 minPos, Vector2 maxPos)
     {
-        
+        minPosition = minPos;
+        maxPosition = maxPos;
     }
 }
