@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,17 @@ public class HighlightWhenMouseOn : MonoBehaviour
     // ...and the mesh finally turns white when the mouse moves away.
     void OnMouseExit()
     {
-        if (StaticVariable.pasueTime) rend.color = Color.white;
+        rend.color = Color.white;
     }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            rb.velocity = Vector2.zero;
+        }
+
+    }
+    
 }
