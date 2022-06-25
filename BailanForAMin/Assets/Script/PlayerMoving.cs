@@ -11,7 +11,7 @@ public class PlayerMoving : MonoBehaviour
     private Animator myAnim;
     private BoxCollider2D myFeet;
     public static bool isGround;
-    public static int facingLeft = 1; //1 is facing right, while -1 is facing left
+    public static int facing = 1; //1 is facing right, while -1 is facing left
 
     private void Start()
     {
@@ -42,11 +42,13 @@ public class PlayerMoving : MonoBehaviour
         {
             if (myRigidbody.velocity.x > 0.1f)
             {
+                facing = 1;
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
 
             if (myRigidbody.velocity.x < -0.1f)
             {
+                facing = -1;
                 transform.localRotation = Quaternion.Euler(0, 180, 0);
             }
         }
@@ -66,10 +68,10 @@ public class PlayerMoving : MonoBehaviour
 
     void jump()
     {
-        print("ready to jump");
+        //print("ready to jump");
         if (Input.GetKeyDown(KeyCode.Space)&& isGround )
         {
-            print("im jumping");
+            //print("im jumping");
             myAnim.SetBool("jumpUp", true);
             Vector2 playerVel = new Vector2(0, jumpSpeed);
             myRigidbody.velocity = playerVel;
