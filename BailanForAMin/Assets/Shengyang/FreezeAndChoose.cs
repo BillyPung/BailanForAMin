@@ -40,6 +40,11 @@ public class FreezeAndChoose : MonoBehaviour
                 StaticVariable.pasueTime = !StaticVariable.pasueTime;
             }
         }
+        if(Input.GetKeyDown(KeyCode.Space) && freeze)
+        {
+            Time.timeScale = 1;
+            StaticVariable.pasueTime = !StaticVariable.pasueTime;
+        }
     }
 
     public void waitingForObjectToPassSpeed()

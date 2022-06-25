@@ -18,6 +18,7 @@ public class PlayerMoving : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         myFeet = GetComponent<BoxCollider2D>();
         myAnim = GetComponent<Animator>();
+        myRigidbody.centerOfMass = transform.Find("CenterOfMass").transform.position;
     }
 
     private void Update()
