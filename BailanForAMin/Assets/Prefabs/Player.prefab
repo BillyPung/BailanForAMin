@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1976846342110779098}
   - component: {fileID: 1976846342110779099}
   - component: {fileID: 1976846342110779096}
-  - component: {fileID: 5728799236006935523}
+  - component: {fileID: 8874796248151406270}
   - component: {fileID: 1976846342110779101}
   - component: {fileID: 1976846342110779102}
   - component: {fileID: 1976846342110779097}
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runSpeed: 4
   jumpSpeed: 6
---- !u!114 &5728799236006935523
+--- !u!114 &8874796248151406270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,11 +113,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1976846342110779103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a715348cd4f6e7247978b25642d80cd0, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a7a50f2411a24e459950d9e1635ed53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 0
-  jumpSpeed: 0
+  img: {fileID: 0}
+  time: 0
+  deathColor: {r: 0, g: 0, b: 0, a: 0}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &1976846342110779101
 Rigidbody2D:
   serializedVersion: 4
@@ -200,3 +202,4 @@ MonoBehaviour:
   gravityMultiplier: 9.8
   rotateWaitTime: 10
   rotateCoolDownTime: 12
+  mainCamera: {fileID: 0}
