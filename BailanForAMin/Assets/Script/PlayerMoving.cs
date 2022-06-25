@@ -65,11 +65,14 @@ public class PlayerMoving : MonoBehaviour
 
     void jump()
     {
-        if (Input.GetButtonDown("Jump") && isGround )
+        print("ready to jump");
+        if (Input.GetKeyDown(KeyCode.Space)&& isGround )
         {
+            print("im jumping");
             myAnim.SetBool("jumpUp", true);
             Vector2 playerVel = new Vector2(0, jumpSpeed);
             myRigidbody.velocity = playerVel;
+           // myRigidbody.AddForce(playerVel, ForceMode2D.Force);
         }
     }
     
