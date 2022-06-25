@@ -96,13 +96,16 @@ public class PlayerMoving : MonoBehaviour
 
     void freeze()
     {
-        if(isGround)
+        if (isGround)
         {
             myRigidbody.constraints = RigidbodyConstraints2D.None;
         }
+
         if (Input.GetKeyDown(KeyCode.J))
         {
+            Time.timeScale = 0;
             myRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
         }
+
     }
 }

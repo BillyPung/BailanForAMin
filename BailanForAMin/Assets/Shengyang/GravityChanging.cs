@@ -9,10 +9,12 @@ public class GravityChanging : MonoBehaviour
 {
     public float gravityMultiplier = 9.8f;
     public float rotateWaitTime = 10F, rotateCoolDownTime = 12F;
-    private float coolDownTimeCounter = 0;
+    private float coolDownTimeCounter;
+    public Camera mainCamera;
 
     private void Start()
     {
+        coolDownTimeCounter = rotateCoolDownTime;
         Physics2D.gravity = Vector2.down * gravityMultiplier;
     }
 
@@ -22,6 +24,7 @@ public class GravityChanging : MonoBehaviour
         coolDownTimeCounter += Time.deltaTime;
         if (coolDownTimeCounter > rotateCoolDownTime)
         {
+            print("it;s already cool down to rotate");
             if (Input.GetKeyDown(KeyCode.N))
             {
                 //print("You pushed N");
@@ -58,7 +61,7 @@ public class GravityChanging : MonoBehaviour
 
     private IEnumerator rotateWaiter(bool turnClockwise)
     {
-        int degrees = 90;
+        int degrees = 45;
         if (turnClockwise) degrees = -degrees;
         float counter = 0;
         //Rotate 90 deg
@@ -70,7 +73,8 @@ public class GravityChanging : MonoBehaviour
         {
             //Increment Timer until counter >= waitTime
             counter += Time.deltaTime;
-            transform.RotateAround(transform.position, Vector3.forward, degrees * Time.deltaTime);
+           // transform.RotateAround(transform.position, Vector3.forward, degrees * Time.deltaTime);
+            mainCamera.transform.RotateAround(mainCamera.transform.position, Vector3.forward, degrees * Time.deltaTime);
             //Debug.Log("We have waited for: " + counter + " seconds");
             //Wait for a frame so that Unity doesn't freeze
             //Check if we want to quit this function
@@ -78,40 +82,82 @@ public class GravityChanging : MonoBehaviour
             yield return null;
         }
     }
-
-    void gravityChanging(bool turnClockWise)
+    
+     void gravityChanging(bool turnClockWise)
     {
         //print("doGravityChanging");
         //Vector2 targetGravity = new Vector2();
         Vector2 currentGravity = Physics2D.gravity;
 
-        print(currentGravity);
+        //print(currentGravity);
         if (currentGravity == Vector2.down * gravityMultiplier)
         {
             print("Now the gravity is down");
             if (turnClockWise)
             {
                 Physics2D.gravity = Vector2.left * gravityMultiplier;
+                print("Now the gravity is left");
             }
-            else Physics2D.gravity = Vector2.right * gravityMultiplier;
+            else
+            {
+                Physics2D.gravity = Vector2.right * gravityMultiplier;
+                print("Now the gravity is right");
+            }
         }
         else if (currentGravity == Vector2.left * gravityMultiplier)
         {
-            print("Now the gravity is left");
+            
             if (turnClockWise)
+            {
                 Physics2D.gravity = Vector2.up * gravityMultiplier;
-            else Physics2D.gravity = Vector2.down * gravityMultiplier;
+                print("Now the gravity is up");
+            }
+            else
+            {
+                Physics2D.gravity = Vector2.down * gravityMultiplier;
+                print("Now the gravity is down");
+            }
         }
         else if (currentGravity == Vector2.up * gravityMultiplier)
         {
             if (turnClockWise)
+            {
                 Physics2D.gravity = Vector2.right * gravityMultiplier;
-            else Physics2D.gravity = Vector2.left * gravityMultiplier;
+                print("Now the gravity is right");
+            }
+            else Physics2D.gravity = Vector2.left * gravityMultiplier;print("Now the gravity is left");
         }
         else if (currentGravity == Vector2.right * gravityMultiplier)
         {
-            if (turnClockWise) Physics2D.gravity = Vector2.down * gravityMultiplier;
-            else Physics2D.gravity = Vector2.up * gravityMultiplier;
+            if (turnClockWise)
+            {
+                Physics2D.gravity = Vector2.down * gravityMultiplier;
+                print("Now the gravity is down");
+            }
+            else Physics2D.gravity = Vector2.up * gravityMultiplier; print("Now the gravity is up");
         }
+        rotateHero();
+    }
+
+    void rotateHero()
+    {
+        if (Physics2D.gravity == Vector2.down * gravityMultiplier)
+        {
+            //transform.rotation.z = 0;
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+        }
+        else if (Physics2D.gravity == Vector2.left * gravityMultiplier)
+        {
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, -90);
+        }
+        else if (Physics2D.gravity == Vector2.up * gravityMultiplier)
+        {
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 180);
+        }
+        else if (Physics2D.gravity == Vector2.right * gravityMultiplier)
+        {
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 90);
+        }
+            
     }
 }
