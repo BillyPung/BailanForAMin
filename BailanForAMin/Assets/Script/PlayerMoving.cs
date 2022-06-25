@@ -111,11 +111,14 @@ public class PlayerMoving : MonoBehaviour
             myRigidbody.constraints = RigidbodyConstraints2D.None;
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J) && !isGround)
+
         {
+            StaticVariable.pasueTime = !StaticVariable.pasueTime;
             Time.timeScale = 0;
             myRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
             myRigidbody.velocity = Vector2.zero;
+            GetComponent<FreezeAndChoose>().waitingForObjectToPassSpeed();
         }
 
     }
