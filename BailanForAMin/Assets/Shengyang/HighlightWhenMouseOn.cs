@@ -8,9 +8,23 @@ public class HighlightWhenMouseOn : MonoBehaviour
     // Start is called before the first frame update
     private Color startcolor;
     public SpriteRenderer rend;
+    private Collider2D collider;
+    private Rigidbody2D rb;
+
     void Start()
     {
-       rend = GetComponent<SpriteRenderer>();
+        collider = GetComponent<Collider2D>();
+        rend = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+       // rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+    }
+
+    private void Update()
+    {
+        if (GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+        {
+            //collider.isTrigger = false;
+        }
     }
 
     // The mesh goes red when the mouse is over it...
@@ -41,7 +55,15 @@ public class HighlightWhenMouseOn : MonoBehaviour
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             rb.velocity = Vector2.zero;
         }
-
     }
-    
+
+    /*private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            {
+                Rigidbody2D rb = GetComponent<Rigidbody2D>();
+                rb.velocity = Vector2.zero;
+            }
+        
+    }*/
 }

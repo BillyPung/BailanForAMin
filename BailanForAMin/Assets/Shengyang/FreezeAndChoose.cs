@@ -8,14 +8,11 @@ public class FreezeAndChoose : MonoBehaviour
     private bool freeze = false;
     private int facing = 1;
     public float moveForce = 10f;
-
-    private void Start()
-    {
-        facing = PlayerMoving.facing;
-    }
+    
 
     private void Update()
     {
+        facing = PlayerMoving.facing;
         if (Input.GetMouseButtonDown(0) && freeze)
         {
             print("freeze and choose");
@@ -27,6 +24,7 @@ public class FreezeAndChoose : MonoBehaviour
             {
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero; //stop moving
                 Debug.Log(hit.collider.gameObject.name);
+                //hit.collider.isTrigger = true;
                 if (facing == 1)
                 {
                     hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveForce, 0);
