@@ -79,7 +79,13 @@ public class PlayerMoving : MonoBehaviour
     void switchAnimation()
     {
         myAnim.SetBool("idle", false);
-        if(myAnim.GetBool("jumpUp"))
+        if (myRigidbody.velocity.x == 0 && myRigidbody.velocity.y < -1) 
+        {
+            myAnim.SetBool("jumpDown", false);
+            myAnim.SetBool("jumpUp", false);
+            myAnim.SetBool("drop", true);
+        }
+        else if(myAnim.GetBool("jumpUp"))
         {
             if (myRigidbody.velocity.y < 0.0f)
             {
@@ -89,6 +95,7 @@ public class PlayerMoving : MonoBehaviour
         }
         else if(isGround)
         {
+            myAnim.SetBool("drop", false);
             myAnim.SetBool("jumpDown", false);
             myAnim.SetBool("idle", true);
         }
@@ -103,6 +110,7 @@ public class PlayerMoving : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
             myRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
+            myRigidbody.velocity = Vector2.zero;
         }
     }
 }
