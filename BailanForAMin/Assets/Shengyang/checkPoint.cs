@@ -5,14 +5,10 @@ using UnityEngine;
 
 public class checkPoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private void OnTriggerExit2D(Collider2D other)
+    private void Update()
     {
-        if(other.gameObject.tag == "Player")
-        {
-            Debug.Log("checkpoint");
-            StaticVariable.savedLocation = transform.position;
-        }
-        
+        print(StaticVariable.savedLocation);
+        StaticVariable.savedLocation = transform.position;
     }
+    // Start is called before the first frame update
 }
