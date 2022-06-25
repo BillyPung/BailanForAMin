@@ -24,7 +24,7 @@ public class GravityChanging : MonoBehaviour
         coolDownTimeCounter += Time.deltaTime;
         if (coolDownTimeCounter > rotateCoolDownTime)
         {
-            print("it;s already cool down to rotate");
+            //print("it;s already cool down to rotate");
             if (Input.GetKeyDown(KeyCode.N))
             {
                 //print("You pushed N");
