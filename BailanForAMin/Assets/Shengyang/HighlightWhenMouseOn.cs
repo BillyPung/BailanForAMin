@@ -21,10 +21,10 @@ public class HighlightWhenMouseOn : MonoBehaviour
 
     private void Update()
     {
-        if (GetComponent<Rigidbody2D>().velocity == Vector2.zero)
-        {
-            //collider.isTrigger = false;
-        }
+        // if (GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+        // {
+        //     //collider.isTrigger = false;
+        // }
     }
 
     // The mesh goes red when the mouse is over it...
