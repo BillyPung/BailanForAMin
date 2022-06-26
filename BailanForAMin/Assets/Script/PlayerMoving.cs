@@ -14,6 +14,7 @@ public class PlayerMoving : MonoBehaviour
     public float gravityMultiplier = 9.8f;
     public static bool isGround;
     public static int facing = 1; //1 is facing right, while -1 is facing left
+    public AudioSource freezeAudio;
 
     private void Awake()
     {
@@ -26,6 +27,13 @@ public class PlayerMoving : MonoBehaviour
         myFeet = GetComponent<BoxCollider2D>();
         myAnim = GetComponent<Animator>();
         //myRigidbody.centerOfMass = transform.Find("CenterOfGravity").transform.position;
+        freezeAudio = GetComponent<AudioSource>();
+        
+        if(freezeAudio == null)
+        {
+            Debug.LogError("No audio source attached to " + gameObject.name);
+        }
+        freezeAudio.Play();
     }
 
     private void Update()
@@ -142,6 +150,7 @@ public class PlayerMoving : MonoBehaviour
             Time.timeScale = 0;
             myRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
             myRigidbody.velocity = Vector2.zero;
+            freezeAudio.Play();
             GetComponent<FreezeAndChoose>().waitingForObjectToPassSpeed();
         }
 

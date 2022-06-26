@@ -14,12 +14,17 @@ public class FreezeAndChoose : MonoBehaviour
     public GameObject targetObject = null;
     public GameObject ice;
     private Image iceImage;
+    
 
     private void Start()
     {
         //iceImage = ice.GetComponent<Image>();
     }
 
+    void start()
+    {
+        
+    }
     private void Update()
     {
         facing = PlayerMoving.facing;
@@ -103,6 +108,7 @@ public class FreezeAndChoose : MonoBehaviour
     public void waitingForObjectToPassSpeed()
     {
         freeze = true;
+        
     }
 
     /*void speedMoved()
