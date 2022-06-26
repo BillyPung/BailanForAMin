@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img: {fileID: 2016771335}
-  time: 0
+  time: 0.5
   deathColor: {r: 0, g: 0, b: 0, a: 0.42352942}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &49787111
@@ -26128,7 +26128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img: {fileID: 2016771335}
-  time: 0
+  time: 0.5
   deathColor: {r: 0, g: 0, b: 0, a: 0.42352942}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &202453999
@@ -26790,7 +26790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img: {fileID: 2016771335}
-  time: 0
+  time: 0.5
   deathColor: {r: 0, g: 0, b: 0, a: 0.42352942}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &627397839
@@ -27275,7 +27275,7 @@ GameObject:
   - component: {fileID: 778647255}
   - component: {fileID: 778647261}
   - component: {fileID: 778647260}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Thorns
   m_TagString: Damage
   m_Icon: {fileID: 0}
@@ -32399,11 +32399,29 @@ MonoBehaviour:
   rotateSpeed: 3
   startSpeed: 3
   rotateChangeCoolDownTime: 1
+--- !u!1 &827926245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5601505330700904019, guid: 656382a348f033a49953cc924eb5c2b3, type: 3}
+  m_PrefabInstance: {fileID: 257790683}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &827926246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5601505330700904016, guid: 656382a348f033a49953cc924eb5c2b3, type: 3}
   m_PrefabInstance: {fileID: 257790683}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &827926250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827926245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33325c6cbe74d440a91f1df5ba808ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateTo: 270
 --- !u!4 &1059211871 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5601505330700904016, guid: 656382a348f033a49953cc924eb5c2b3, type: 3}
@@ -33019,11 +33037,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1976846342110779098, guid: bc7bd897c1f151240a44e6b650ddc0cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.34
+      value: -19.36
       objectReference: {fileID: 0}
     - target: {fileID: 1976846342110779098, guid: bc7bd897c1f151240a44e6b650ddc0cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.56
+      value: 4.417
       objectReference: {fileID: 0}
     - target: {fileID: 1976846342110779098, guid: bc7bd897c1f151240a44e6b650ddc0cc, type: 3}
       propertyPath: m_LocalPosition.z
