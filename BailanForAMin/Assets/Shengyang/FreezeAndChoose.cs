@@ -44,6 +44,7 @@ public class FreezeAndChoose : MonoBehaviour
         {
             Time.timeScale = 1;
             StaticVariable.pasueTime = !StaticVariable.pasueTime;
+            freeze = false;
         }
     }
 
