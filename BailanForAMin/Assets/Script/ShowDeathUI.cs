@@ -29,7 +29,9 @@ public class ShowDeathUI : MonoBehaviour
     IEnumerator show()
     {
         img.color = deathColor;
+        Time.timeScale = 0;
         yield return new WaitForSeconds(time);
         img.color = defaultColor;
+        Time.timeScale = 1;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,11 @@ public class PlayerMoving : MonoBehaviour
     public float gravityMultiplier = 9.8f;
     public static bool isGround;
     public static int facing = 1; //1 is facing right, while -1 is facing left
+
+    private void Awake()
+    {
+       // StaticVariable.savedLocation = transform.position;
+    }
 
     private void Start()
     {

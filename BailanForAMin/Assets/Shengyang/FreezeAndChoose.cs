@@ -18,7 +18,6 @@ public class FreezeAndChoose : MonoBehaviour
     private void Start()
     {
         //iceImage = ice.GetComponent<Image>();
-
     }
 
     private void Update()
@@ -44,11 +43,20 @@ public class FreezeAndChoose : MonoBehaviour
                         targetPos.y - transform.position.y); // * moveForce;*/
                     hitCollider = hit.collider;
                 }
+                else if (hit.collider.name == "MovablePlatform1")
+                {
+                    GameObject target =GameObject.Find("MP1Target");
+                    print("active");
+                    hit.collider.transform.position = Vector2.Lerp(hit.collider.transform.position,
+                        target.transform.position, Time.deltaTime);
+                }
+
                 else
                 {
                     print("it has no children");
                     if (facing == 1)
                     {
+                        
                         hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveForce, 0);
                         print(hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity);
                     }
@@ -63,7 +71,6 @@ public class FreezeAndChoose : MonoBehaviour
                 Time.timeScale = 1;
                 StaticVariable.pasueTime = !StaticVariable.pasueTime;
                 freeze = false;
-
             }
         }
 
@@ -72,7 +79,6 @@ public class FreezeAndChoose : MonoBehaviour
             Time.timeScale = 1;
             StaticVariable.pasueTime = !StaticVariable.pasueTime;
             freeze = false;
-
         }
 
         if (hitCollider != null)
@@ -83,10 +89,15 @@ public class FreezeAndChoose : MonoBehaviour
 
     void lerpMovePlatform(Collider2D col)
     {
-
-        
         col.transform.position =
-            Vector2.Lerp(col.transform.position, targetObject.transform.position, Time.deltaTime * 10);
+            Vector2.Lerp(col.transform.position, targetObject.transform.position, Time.deltaTime);
+        // col.transform.position =
+        // Vector2.Lerp(col.transform.position, targetObject.transform.position, Time.deltaTime / 2);
+        /*if(hitCollider.attachedRigidbody.velocity == Vector2.zero)
+        {
+            hitCollider.attachedRigidbody.velocity = new Vector2(0, 0);
+            hitCollider = null;
+        }*/
     }
 
     public void waitingForObjectToPassSpeed()
