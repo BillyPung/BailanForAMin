@@ -14,9 +14,9 @@ public class deathFloorScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
         if (other.gameObject.CompareTag("Player"))
         {
+            print("userTouch");
             //black screen and transport to saved location
             showDeathUI.showDeathUI();
             other.transform.position = StaticVariable.savedLocation;

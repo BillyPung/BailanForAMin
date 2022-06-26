@@ -74,15 +74,12 @@ public class PlayerMoving : MonoBehaviour
 
     void run()
     {
-        if (isGround)
-        {
             float moveDir = Input.GetAxis("Horizontal");
             Vector2 playerVel = new Vector2(moveDir * runSpeed, myRigidbody.velocity.y);
             //Vector2.SmoothDamp()
             myRigidbody.velocity = playerVel;
             bool playerHasXAxisSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
             myAnim.SetBool("walk", playerHasXAxisSpeed);
-        }
     }
 
     void jump()

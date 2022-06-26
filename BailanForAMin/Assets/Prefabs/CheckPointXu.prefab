@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5601505330700904016}
   - component: {fileID: 5601505330700904017}
   - component: {fileID: 5601505330700904015}
+  - component: {fileID: 7483589767056260515}
   - component: {fileID: 5601505330700904014}
   m_Layer: 0
   m_Name: CheckPointXu
@@ -98,6 +99,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63405886c8a28ad47998197edc585db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7483589767056260515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601505330700904019}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33325c6cbe74d440a91f1df5ba808ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateTo: 0
 --- !u!61 &5601505330700904014
 BoxCollider2D:
   m_ObjectHideFlags: 0

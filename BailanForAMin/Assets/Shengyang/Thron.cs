@@ -12,14 +12,13 @@ public class Thron : MonoBehaviour
         showDeathUI = GetComponent<ShowDeathUI>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if (other.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             //black screen and transport to saved location
             showDeathUI.showDeathUI();
-            other.transform.position = StaticVariable.savedLocation;
+            collision.transform.position = StaticVariable.savedLocation;
         }
     }
 }
