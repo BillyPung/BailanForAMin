@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-    
+using UnityEngine.UI;
+using Image = UnityEngine.UIElements.Image;
+
 public class FreezeAndChoose : MonoBehaviour
 {
     private bool freeze = false;
@@ -10,6 +12,14 @@ public class FreezeAndChoose : MonoBehaviour
     public float moveForce = 10f;
     private Collider2D hitCollider = null;
     public GameObject targetObject = null;
+    public GameObject ice;
+    private Image iceImage;
+
+    private void Start()
+    {
+        //iceImage = ice.GetComponent<Image>();
+
+    }
 
     private void Update()
     {
@@ -23,11 +33,10 @@ public class FreezeAndChoose : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
             if (hit.collider != null && hit.collider.tag == "MovablePlatform")
             {
-                
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero; //stop moving
                 Debug.Log(hit.collider.gameObject.name);
                 //hit.collider.isTrigger = true;
-                if(hit.collider.gameObject.transform.childCount > 0)
+                if (hit.collider.gameObject.transform.childCount > 0)
                 {
                     /*Vector3 targetPos = hit.collider.gameObject.transform.GetChild(0).transform.position;
                     hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(
@@ -49,16 +58,21 @@ public class FreezeAndChoose : MonoBehaviour
                         print(hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity);
                     }
                 }
+
                 //hit.collider.attachedRigidbody.AddForce(Vector2.up);
                 Time.timeScale = 1;
                 StaticVariable.pasueTime = !StaticVariable.pasueTime;
+                freeze = false;
+
             }
         }
-        if(Input.GetKeyDown(KeyCode.Space) && freeze)
+
+        if (Input.GetKeyDown(KeyCode.Space) && freeze)
         {
             Time.timeScale = 1;
             StaticVariable.pasueTime = !StaticVariable.pasueTime;
             freeze = false;
+
         }
 
         if (hitCollider != null)
@@ -69,8 +83,12 @@ public class FreezeAndChoose : MonoBehaviour
 
     void lerpMovePlatform(Collider2D col)
     {
-        col.transform.position = Vector2.Lerp(col.transform.position, targetObject.transform.position, Time.deltaTime * 10);
+
+        
+        col.transform.position =
+            Vector2.Lerp(col.transform.position, targetObject.transform.position, Time.deltaTime * 10);
     }
+
     public void waitingForObjectToPassSpeed()
     {
         freeze = true;
