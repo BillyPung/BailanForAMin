@@ -30,8 +30,18 @@ public class ShowDeathUI : MonoBehaviour
     {
         img.color = deathColor;
         Time.timeScale = 0;
+        pauseGame();
         yield return new WaitForSeconds(time);
         img.color = defaultColor;
-        Time.timeScale = 1;
+       Time.timeScale = 1;
+    }
+    public void pauseGame()
+    {
+        StartCoroutine(GamePauser());
+    }
+    public IEnumerator GamePauser(){
+        Debug.Log ("Inside PauseGame()");
+        yield return new WaitForSeconds (3);
+        Debug.Log("Done with my pause");
     }
 }
