@@ -8,7 +8,8 @@ public class FreezeAndChoose : MonoBehaviour
     private bool freeze = false;
     private int facing = 1;
     public float moveForce = 10f;
-    
+    private Collider2D hitCollider = null;
+    public GameObject targetObject = null;
 
     private void Update()
     {
@@ -22,18 +23,31 @@ public class FreezeAndChoose : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
             if (hit.collider != null && hit.collider.tag == "MovablePlatform")
             {
+                
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero; //stop moving
                 Debug.Log(hit.collider.gameObject.name);
                 //hit.collider.isTrigger = true;
-                if (facing == 1)
+                if(hit.collider.gameObject.transform.childCount > 0)
                 {
-                    hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveForce, 0);
-                    print(hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity);
+                    /*Vector3 targetPos = hit.collider.gameObject.transform.GetChild(0).transform.position;
+                    hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(
+                        targetPos.x - hit.collider.gameObject.transform.position.x,
+                        targetPos.y - transform.position.y); // * moveForce;*/
+                    hitCollider = hit.collider;
                 }
-                else if(facing == -1)
+                else
                 {
-                    hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-moveForce, 0);
-                    print(hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity);
+                    print("it has no children");
+                    if (facing == 1)
+                    {
+                        hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveForce, 0);
+                        print(hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity);
+                    }
+                    else if (facing == -1)
+                    {
+                        hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-moveForce, 0);
+                        print(hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity);
+                    }
                 }
                 //hit.collider.attachedRigidbody.AddForce(Vector2.up);
                 Time.timeScale = 1;
@@ -46,8 +60,17 @@ public class FreezeAndChoose : MonoBehaviour
             StaticVariable.pasueTime = !StaticVariable.pasueTime;
             freeze = false;
         }
+
+        if (hitCollider != null)
+        {
+            lerpMovePlatform(hitCollider);
+        }
     }
 
+    void lerpMovePlatform(Collider2D col)
+    {
+        col.transform.position = Vector2.Lerp(col.transform.position, targetObject.transform.position, Time.deltaTime * 10);
+    }
     public void waitingForObjectToPassSpeed()
     {
         freeze = true;

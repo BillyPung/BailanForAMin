@@ -50,8 +50,23 @@ public class HighlightWhenMouseOn : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (col.gameObject.layer == LayerMask.NameToLayer("Ground") || col.gameObject.tag == "Damage")
         {
+            //collider.isTrigger = true;
+            //rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            rb.velocity = Vector2.zero;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.layer == LayerMask.NameToLayer("Ground") || col.gameObject.tag == "Damage")
+        {
+            //collider.isTrigger = true;
+            //rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             rb.velocity = Vector2.zero;
         }
