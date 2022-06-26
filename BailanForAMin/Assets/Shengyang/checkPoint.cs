@@ -5,10 +5,29 @@ using UnityEngine;
 
 public class checkPoint : MonoBehaviour
 {
+
+    private BoxCollider2D boxCollider2D;
+
+    private void Start()
+    {
+        boxCollider2D = GetComponent<BoxCollider2D>();
+    }
     private void Update()
     {
-        print(StaticVariable.savedLocation);
-        StaticVariable.savedLocation = transform.position;
+        if(StaticVariable.checkPointName == gameObject.name)
+        {
+            print("save " + gameObject.name + transform.position);
+            StaticVariable.savedLocation = transform.position;
+        }
     }
-    // Start is called before the first frame update
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            print("check" + gameObject.name);
+            StaticVariable.checkPointName = gameObject.name;
+            boxCollider2D.enabled = false;
+        }
+    }
 }
