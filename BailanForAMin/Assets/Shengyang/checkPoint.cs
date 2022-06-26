@@ -16,7 +16,6 @@ public class checkPoint : MonoBehaviour
     {
         if(StaticVariable.checkPointName == gameObject.name)
         {
-            print("save " + gameObject.name + transform.position);
             StaticVariable.savedLocation = transform.position;
         }
     }
@@ -25,7 +24,6 @@ public class checkPoint : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            print("check" + gameObject.name);
             StaticVariable.checkPointName = gameObject.name;
             boxCollider2D.enabled = false;
         }
