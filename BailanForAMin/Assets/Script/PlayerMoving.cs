@@ -143,7 +143,7 @@ public class PlayerMoving : MonoBehaviour
             myRigidbody.constraints = RigidbodyConstraints2D.None;
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && !isGround)
+        if (Input.GetKeyDown(KeyCode.F) && !isGround && !StaticVariable.pasueTime)
 
         {
             StaticVariable.pasueTime = !StaticVariable.pasueTime;

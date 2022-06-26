@@ -29,11 +29,11 @@ public class ShowDeathUI : MonoBehaviour
     IEnumerator show()
     {
         img.color = deathColor;
-        Time.timeScale = 0;
-        pauseGame();
+        //Time.timeScale = 0;
+        //pauseGame();
         yield return new WaitForSeconds(time);
         img.color = defaultColor;
-       Time.timeScale = 1;
+       //Time.timeScale = 1;
     }
     public void pauseGame()
     {
